@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodel="clr-namespace:TicTacToe.ViewModel" 
+             x:DataType="viewmodel:GameViewModel"
+             x:Class="TicTacToe.MainPage">
+
+    <StackLayout Orientation="Vertical" Padding="20">
+        <Frame  Padding="1" CornerRadius="0">
+            <Label Text="X _ O"  TextColor="Black" FontSize="36" HorizontalTextAlignment="Center"/>
+        </Frame>
+
+        <StackLayout Grid.Row="0" Grid.Column="1">
+            <Label Text="Ход игрока "/>
+            <Label Text="{Binding CurrentPlayer}"/>
+        </StackLayout>
+        <Grid x:Name ="myGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition  Width="*" />
+                <ColumnDefinition  Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="button1" BackgroundColor="#2196A3" Grid.Row="0" Grid.Column="0" Text="{Binding Field[0]}" TextColor="White"   Command="{Binding btnClick}"  CommandParameter="1"/>
+
+            <Button x:Name="button2" BackgroundColor="#2196A3" Grid.Row="0" Grid.Column="1" Text="{Binding Field[1]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="2" IsEnabled="False"/>
+            <Button x:Name="button3" BackgroundColor="#2196A3" Grid.Row="0" Grid.Column="2" Text="{Binding Field[2]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="3"/>
+
+            <Button x:Name="button4" BackgroundColor="#2196A3" Grid.Row="1" Grid.Column="0" Text="{Binding Field[3]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="4"/>
+            <Button x:Name="button5" BackgroundColor="#2196A3" Grid.Row="1" Grid.Column="1" Text="{Binding Field[4]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="5"/>
+            <Button x:Name="button6" BackgroundColor="#2196A3" Grid.Row="1" Grid.Column="2" Text="{Binding Field[5]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="6"/>
+
+            <Button x:Name="button7" BackgroundColor="#2196A3" Grid.Row="2" Grid.Column="0" Text="{Binding Field[6]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="7"/>
+            <Button x:Name="button8" BackgroundColor="#2196A3" Grid.Row="2" Grid.Column="1" Text="{Binding Field[7]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="8"/>
+            <Button x:Name="button9" BackgroundColor="#2196A3" Grid.Row="2" Grid.Column="2" Text="{Binding Field[8]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="9"/>
+        </Grid>
+        <Button  BackgroundColor="#2196A3" Text="Повторить" WidthRequest="100" HeightRequest="40" HorizontalOptions ="End" TextColor="White"  FontSize="12" Command="{Binding NewGame}" CommandParameter="7"/>
+
+        <StackLayout x:Name="GameOver" Grid.Row="0" Grid.Column="3">
+            <Label Text="{Binding Field[5]}" HorizontalTextAlignment="Center" IsVisible="true"/>
+        </StackLayout>
+
+
+    </StackLayout>
+
+
+
+
+</ContentPage>
