@@ -21,5 +21,25 @@ namespace TicTacToe
             BindingContext = new GameViewModel();
         }
 
+        private void case3x3_Clicked(object sender, EventArgs e)
+        {
+            Board1.IsVisible = true;
+            Board2.IsVisible = false;
+            Board3.IsVisible = false;
+        }
+
+        private void case4x4_Clicked(object sender, EventArgs e)
+        {
+            Board1.IsVisible = false;
+            Board2.IsVisible = true;
+            Board3.IsVisible = false;
+        }
+
+        private void case5x5_Clicked(object sender, EventArgs e)
+        {
+            Board1.IsVisible = false;
+            Board2.IsVisible = false;
+            Board3.IsVisible = true;
+        }
     }
 }

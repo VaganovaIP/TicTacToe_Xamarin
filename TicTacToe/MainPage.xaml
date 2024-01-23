@@ -5,51 +5,152 @@
              x:DataType="viewmodel:GameViewModel"
              x:Class="TicTacToe.MainPage">
 
-    <StackLayout Orientation="Vertical" Padding="20">
-        <Frame  Padding="1" CornerRadius="0">
+    <StackLayout Orientation="Vertical" Padding="20" VerticalOptions="Center">
+        <Frame  Padding="10" CornerRadius="0" Margin="5">
             <Label Text="X _ O"  TextColor="Black" FontSize="36" HorizontalTextAlignment="Center"/>
         </Frame>
 
-        <StackLayout Grid.Row="0" Grid.Column="1">
-            <Label Text="Ход игрока "/>
-            <Label Text="{Binding CurrentPlayer}"/>
-        </StackLayout>
-        <Grid x:Name ="myGrid">
+        <Grid HeightRequest="50" HorizontalOptions="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition  Width="*" />
-                <ColumnDefinition  Width="*" />
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition  Width="50" />
+                <ColumnDefinition  Width="50" />
             </Grid.ColumnDefinitions>
-
-            <Button x:Name="button1" BackgroundColor="#2196A3" Grid.Row="0" Grid.Column="0" Text="{Binding Field[0]}" TextColor="White"   Command="{Binding btnClick}"  CommandParameter="1"/>
-
-            <Button x:Name="button2" BackgroundColor="#2196A3" Grid.Row="0" Grid.Column="1" Text="{Binding Field[1]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="2" IsEnabled="False"/>
-            <Button x:Name="button3" BackgroundColor="#2196A3" Grid.Row="0" Grid.Column="2" Text="{Binding Field[2]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="3"/>
-
-            <Button x:Name="button4" BackgroundColor="#2196A3" Grid.Row="1" Grid.Column="0" Text="{Binding Field[3]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="4"/>
-            <Button x:Name="button5" BackgroundColor="#2196A3" Grid.Row="1" Grid.Column="1" Text="{Binding Field[4]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="5"/>
-            <Button x:Name="button6" BackgroundColor="#2196A3" Grid.Row="1" Grid.Column="2" Text="{Binding Field[5]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="6"/>
-
-            <Button x:Name="button7" BackgroundColor="#2196A3" Grid.Row="2" Grid.Column="0" Text="{Binding Field[6]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="7"/>
-            <Button x:Name="button8" BackgroundColor="#2196A3" Grid.Row="2" Grid.Column="1" Text="{Binding Field[7]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="8"/>
-            <Button x:Name="button9" BackgroundColor="#2196A3" Grid.Row="2" Grid.Column="2" Text="{Binding Field[8]}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="9"/>
+            <Button x:Name="case3x3" BackgroundColor="White" Grid.Row="0" Grid.Column="0"  Text="3x3" CornerRadius="30" TextColor="Black" BorderColor="Black" BorderWidth="2" Clicked="case3x3_Clicked" Command="{Binding modeGame}"   CommandParameter="case3x3"/>
+            <Button x:Name="case4x4" BackgroundColor="White" Grid.Row="0" Grid.Column="1" Text="4x4" TextColor="Black" BorderColor="Black" BorderWidth="2" CornerRadius="30" Clicked="case4x4_Clicked" Command="{Binding modeGame}" CommandParameter="case4x4"/>
+            <Button x:Name="case5x5" BackgroundColor="White" Grid.Row="0" Grid.Column="2" Text="5x5" TextColor="Black" BorderColor="Black" BorderWidth="2" CornerRadius="30" Clicked ="case5x5_Clicked" Command="{Binding modeGame}" CommandParameter="case5x5"/>
         </Grid>
-        <Button  BackgroundColor="#2196A3" Text="Повторить" WidthRequest="100" HeightRequest="40" HorizontalOptions ="End" TextColor="White"  FontSize="12" Command="{Binding NewGame}" CommandParameter="7"/>
-
-        <StackLayout x:Name="GameOver" Grid.Row="0" Grid.Column="3">
-            <Label Text="{Binding Field[5]}" HorizontalTextAlignment="Center" IsVisible="true"/>
-        </StackLayout>
 
 
+
+
+        <Frame x:Name ="Board1" IsVisible="false">
+            <Grid HeightRequest="140">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition  Width="*" />
+                    <ColumnDefinition  Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="button1" BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="0" Grid.Column="0"  Text="{Binding Button1}" TextColor="White"   Command="{Binding btnClick}"  CommandParameter="1"/>
+                <Button x:Name="button2" BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="0" Grid.Column="1" Text="{Binding Button2}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="2"/>
+                <Button x:Name="button3" BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="0" Grid.Column="2" Text="{Binding Button3}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="3"/>
+
+                <Button x:Name="button4" BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="1" Grid.Column="0" Text="{Binding Button4}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="4"/>
+                <Button x:Name="button5" BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="1" Grid.Column="1" Text="{Binding Button5}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="5"/>
+                <Button x:Name="button6" BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="1" Grid.Column="2" Text="{Binding Button6}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="6"/>
+
+                <Button x:Name="button7" BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="0" Text="{Binding Button7}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="7"/>
+                <Button x:Name="button8" BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="1" Text="{Binding Button8}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="8"/>
+                <Button x:Name="button9" BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="2" Text="{Binding Button9}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="9"/>
+            </Grid>
+        </Frame>
+        <Frame x:Name ="Board2" IsVisible="false">
+            <Grid HeightRequest="180">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition  Width="*" />
+                    <ColumnDefinition  Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button  BackgroundColor="#2196A3" Grid.Row="0" BorderColor="Black" BorderWidth="2" Grid.Column="0" Text="{Binding Button1}" TextColor="White"  Command="{Binding btnClick}"  CommandParameter="1"/>
+                <Button  BackgroundColor="#2196A3" Grid.Row="0" BorderColor="Black" BorderWidth="2" Grid.Column="1" Text="{Binding Button2}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="2"/>
+                <Button  BackgroundColor="#2196A3" Grid.Row="0" BorderColor="Black" BorderWidth="2" Grid.Column="2" Text="{Binding Button3}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="3"/>
+                <Button  BackgroundColor="#2196A3" Grid.Row="0" BorderColor="Black" BorderWidth="2" Grid.Column="3" Text="{Binding Button4}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="4"/>
+
+                <Button  BackgroundColor="#2196A3" Grid.Row="1" BorderColor="Black" BorderWidth="2" Grid.Column="0" Text="{Binding Button5}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="5"/>
+                <Button  BackgroundColor="#2196A3" Grid.Row="1" BorderColor="Black" BorderWidth="2" Grid.Column="1" Text="{Binding Button6}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="6"/>
+                <Button  BackgroundColor="#2196A3" Grid.Row="1" BorderColor="Black" BorderWidth="2" Grid.Column="2" Text="{Binding Button7}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="7"/>
+                <Button  BackgroundColor="#2196A3" Grid.Row="1" BorderColor="Black" BorderWidth="2" Grid.Column="3" Text="{Binding Button8}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="8"/>
+
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="0" Text="{Binding Button9}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="9"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="1" Text="{Binding Button10}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="10"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="2" Text="{Binding Button11}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="11"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="3" Text="{Binding Button12}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="12"/>
+
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="3" Grid.Column="0" Text="{Binding Button13}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="13"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="3" Grid.Column="1" Text="{Binding Button14}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="14"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="3" Grid.Column="2" Text="{Binding Button15}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="15"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="3" Grid.Column="3" Text="{Binding Button16}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="16"/>
+
+            </Grid>
+        </Frame>
+        <Frame x:Name ="Board3" IsVisible="false" Padding="10">
+            <Grid HeightRequest="220">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition  Width="*" />
+                    <ColumnDefinition  Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="0" Grid.Column="0" Text="{Binding Button1}" TextColor="White"  Command="{Binding btnClick}"  CommandParameter="1"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="0" Grid.Column="1" Text="{Binding Button2}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="2"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="0" Grid.Column="2" Text="{Binding Button3}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="3"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="0" Grid.Column="3" Text="{Binding Button4}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="4"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="0" Grid.Column="4" Text="{Binding Button5}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="5"/>
+
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="1" Grid.Column="0" Text="{Binding Button6}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="6"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="1" Grid.Column="1" Text="{Binding Button7}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="7"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="1" Grid.Column="2" Text="{Binding Button8}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="8"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="1" Grid.Column="3" Text="{Binding Button9}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="9"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="1" Grid.Column="4" Text="{Binding Button10}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="10"/>
+
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="0" Text="{Binding Button11}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="11"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="1" Text="{Binding Button12}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="12"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="2" Text="{Binding Button13}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="13"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="3" Text="{Binding Button14}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="14"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="2" Grid.Column="4" Text="{Binding Button15}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="15"/>
+
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="3" Grid.Column="0" Text="{Binding Button16}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="16"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="3" Grid.Column="1" Text="{Binding Button17}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="17"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="3" Grid.Column="2" Text="{Binding Button18}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="18"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="3" Grid.Column="3" Text="{Binding Button19}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="19"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="3" Grid.Column="4" Text="{Binding Button20}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="20"/>
+
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="4" Grid.Column="0" Text="{Binding Button21}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="21"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="4" Grid.Column="1" Text="{Binding Button22}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="22"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="4" Grid.Column="2" Text="{Binding Button23}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="23"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="4" Grid.Column="3" Text="{Binding Button24}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="24"/>
+                <Button  BackgroundColor="#2196A3" BorderColor="Black" BorderWidth="2" Grid.Row="4" Grid.Column="4" Text="{Binding Button25}" TextColor="White"  Command="{Binding btnClick}" CommandParameter="25"/>
+
+            </Grid>
+        </Frame>
+
+            <Grid HeightRequest="90" HorizontalOptions="Center" Padding="10" >
+            <Label Text="Ход игрока " HeightRequest="50" Grid.Row="0" Grid.Column="0" TextColor="Black"/>
+                <Label Text="{Binding CurrentPlayer}" HeightRequest="40" WidthRequest="50" Grid.Row="0" Grid.Column="1"  TextColor="Black"/>
+                <Button  BackgroundColor="White" Grid.Row="0" Grid.Column="2" Text="R" WidthRequest="40" HeightRequest="80" HorizontalOptions ="End" TextColor="Black" BorderColor="Black" BorderWidth="2" CornerRadius="30"  FontSize="10" Command="{Binding NewGame}" CommandParameter="7"/>
+            </Grid>
+
+        <Label Text="" HorizontalTextAlignment="Center" IsVisible="true"/>
+        <ListView Header="История игры" HasUnevenRows="True" ItemsSource="{Binding Results}">
+ 
+        </ListView>
     </StackLayout>
-
-
-
-
 </ContentPage>
